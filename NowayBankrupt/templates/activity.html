@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+<div class="bigbutton" onclick='window.location.href = "/";'> ^ </div>
+
+{% endblock %}
+
+{% block body %}
+
+
+<form action="{{url_for('activity', act_type = act_type)}}" style="text-align: center;" method="post">
+	<table id="customers" style="margin:auto;">
+		<tr>
+			<td><input type="text" id="head" name="head" required></td>
+			<td class="{{ act_type }}">
+				{% if act_type == "add" %} + {% else %} - {% endif %}
+				<input type="number" id="money" name="money" required>TL
+			</td>
+		</tr>
+	</table>
+	<!-- <div class="morebutton" id="morebutton" onclick="seemore()" ><p>...</p></div> -->
+	<br><input type="submit" value="Onayla">
+</form>
+
+{% endblock %}

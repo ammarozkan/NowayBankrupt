@@ -1,0 +1,39 @@
+<!doctype HTML>
+<html>
+	<head>
+		<title>Bankrupt</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+			@import "/static/style.css";
+		</style>
+		<script>
+			function golink(address) 
+			{
+				window.location.href=address;
+			}
+		</script>
+	</head>
+	<body>
+
+		{% block head %}
+		{% endblock %}
+		<br><br>
+
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<ul class="errorlist">
+				{% for message in messages %}
+					<li>{{message}}</li>
+				{% endfor %}
+				</ul>
+			{% endif %}
+		{% endwith %}
+
+		{% block body %}
+		{% endblock %}
+
+		<br><br><br><br>
+		<p class="description"><i>Ev sakinlerine.</i></p>
+		<p class="description" onclick="golink('/version')"><i>v1.2</i></p>
+	</body>
+</html>

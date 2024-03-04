@@ -1,0 +1,29 @@
+<!doctype HTML>
+<html>
+	<head>
+		<title>Bankrupt</title>
+		<style>
+			@import "/static/gfksyui.css";
+		</style>
+	</head>
+	<body>
+		{% block head %}
+		{% endblock %}
+		<br><br>
+
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				<ul class="errorlist">
+				{% for message in messages %}
+					<li>{{message}}</li>
+				{% endfor %}
+				</ul>
+			{% endif %}
+		{% endwith %}
+
+		{% block body %}
+		{% endblock %}
+
+		<p class="description"><i style="color:red;">Ev sakinlerinin kullanımına sunulmamıştır.</i></p>
+	</body>
+</html>

@@ -1,0 +1,12 @@
+body {
+background-color: #EEDBDD;
+font-size:1rem;
+}
+
+.bigbutton {
+	text-align: center;
+	background-color:#FAD64D;
+	color: gray;
+	text-decoration:none;
+	padding:10vw;
+}

@@ -1,0 +1,102 @@
+body {
+background-color: #EEDBDD;
+font-size:1rem;
+}
+
+table, tr, td{
+	border: 1px solid;
+	border-collapse: 100%;
+}
+
+.sub {
+	background-color: #F092A3;
+}
+
+.add {
+	background-color: #8194EB;
+}
+
+input {
+	padding: 0rem;
+	margin: 0.5rem;
+}
+
+#customers {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+}
+
+#customers td, #customers th {
+  border: 1px solid #FFF;
+  padding: 1rem 0rem;
+  text-align: center;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+#customers tr:nth-child(odd){background-color: #e0e0e0;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #4DFA86;
+  color: white;
+}
+
+.button_del {
+	background-color: #FF6666;
+	text-decoration: none;
+	color:#FFFFFF;
+	margin:5px;
+}
+
+ul {
+	list-style-type: lower-armenian;
+}
+
+li {
+	background-color:#FAD64D;
+	padding:1rem;
+	margin:1rem;
+}
+
+li:hover {
+	background-color:#FAD6FF;
+}
+
+.description {
+	text-align: center;
+	color: gray;
+}
+
+.headbuttons {
+	background-color:#FAD64D;
+	display:flex;
+}
+
+.pieceheadbutton {
+	background-color:#FAD64D;
+	color: gray;
+	width: 50%;
+	float: left;
+	padding:6vw;
+	text-align: center;
+	font-size: 13vw;
+}
+
+.bigbutton {
+	text-align: center;
+	background-color:#FAD64D;
+	color: gray;
+	text-decoration:none;
+	padding:6vw;
+	font-size: 13vw;
+}
+
+.morebutton {
+	text-align: center;
+	padding: 1rem;
+	background-color: gray;
+}

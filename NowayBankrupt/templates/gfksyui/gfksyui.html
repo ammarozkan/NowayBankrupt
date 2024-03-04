@@ -1,0 +1,27 @@
+
+{% extends "gfksyui/gfksyui_base.html" %}
+
+{% block head %}
+
+<div class="bigbutton" onclick='window.location.href = "/";'> ^ </div>
+
+{% endblock %}
+
+{% block body %}
+
+<script>
+	function db_init_activites() 
+	{
+		window.location.href="{{url_for('gfksyui', command='db-init-activities')}}";
+	}
+
+	function db_destroy_activites()
+	{
+		window.location.href="{{url_for('gfksyui', command='db-destroy-activities')}}";
+	}
+</script>
+
+<div class="bigbutton" onclick='db_init_activites();'> db-init-activities </div>
+<div class="bigbutton" onclick='db_destroy_activites();'> db-destroy-activities </div>
+
+{% endblock %}

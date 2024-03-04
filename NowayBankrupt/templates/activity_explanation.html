@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+<div class="bigbutton" onclick='window.location.href = "/";'> ^ </div>
+
+{% endblock %}
+
+{% block body %}
+
+<div style="text-align: center;">
+<p><i>{{ activity["date"] }}</i></p>
+
+<h3>{{ activity["head"] }}</h3>
+
+{% if activity["money"] > 0 %}
+<p>{{activity["money"]}} TL eklendi.</p>
+{% else %}
+<p>{{activity["money"]*-1}} TL harcandı.</p>
+{% endif %}
+
+</div>
+{% endblock %}

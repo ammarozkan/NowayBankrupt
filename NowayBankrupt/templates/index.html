@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+<div class="headbuttons">
+	<div class="pieceheadbutton" onclick='window.location.href = "/activity/sub";'>-</div>
+	<div class="pieceheadbutton" onclick='window.location.href = "/activity/add";'>+</div>
+</div>
+
+{% endblock %}
+
+{% block body %}
+
+{% set subcolor = (240, 55, 84) %}
+{% set addcolor = (74, 103, 232) %}
+{% set default = (255, 255, 255) %}
+
+<table id="customers" style=";">
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+	</tr>
+	{% for activity in activities %}
+		<tr>
+			<td onclick='window.location.href = "/activity/{{activity['id']}}" '>{{activity["head"]}}</td>
+			<td onclick='window.location.href = "/activity/{{activity['id']}}" '
+			
+					{% if activity['money'] > 0 %}{% set color = addcolor %}{% else %}{% set color = subcolor %}{%endif%}
+					{% set color = getRelativeColor(color, default, activity['money']|abs) %}
+					style="background-color:rgb{{color}};"  >
+
+					{{activity["money"]}}TL
+
+			</td>
+			<td class="button_del" onclick="golink('/delete/{{activity['id']}}')"><a class="button_del">-</a></td>
+		</tr>
+	{% endfor %}
+</table>
+
+{% endblock %}
