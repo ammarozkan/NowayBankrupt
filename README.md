@@ -6,7 +6,7 @@ family to track our money all together.
 It's a really simple flask application. I mean REALLY simple. And I'm proud of
 this simplicity.
 
-  This project is based on a simple design. A big yellow button scheme on top, and other schemes on bottom.
+  This project is based on a minimalistic design. A big yellow button scheme on top, and other schemes on bottom.
 I made the design as simple as possible. Website is based on Turkish language originally but it could be translated easily.
 It does have at most two sentences(approximately three words) except version logs.
 
