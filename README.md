@@ -2,7 +2,8 @@
 NowayBankrupt is a solution to the problem of hardware based "money tracking programs".
 It is a website. So from any device that can reach to the website, app could be used like
 a charm. Okay, okay. No more ADs. It's just a website to use in my home with my
-family. It's a really simple flask application. I mean REALLY simple. And I'm proud of
+family to track our money all together. 
+It's a really simple flask application. I mean REALLY simple. And I'm proud of
 this simplicity.
 
   This project is based on a simple design. A big yellow button scheme on top, and other schemes on bottom.
