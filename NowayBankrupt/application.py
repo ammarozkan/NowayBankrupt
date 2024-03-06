@@ -32,7 +32,7 @@ db.row_factory = sqlite3.Row
 
 global app
 app = Flask(__name__)
-app.secret_key = b"GeiajEEAgeaj0)E&=)^=)J)JaeaKE-"
+app.secret_key = b"gAPJ$QJrgj9jip$PJg-"
 
 
 activities = []
@@ -44,21 +44,23 @@ geldiyse, bana danışın.",
 	"Meydana gelemeyecek bir durum meydana geldi. Bana yanda yer alan hata kodu ile \
 birlikte danışın."]
 
-def addToActivities(head, money, act_type):
+def addToActivities(head, money, explanation, act_type):
 	global activities
 	const = 1 if act_type == "add" else -1
 	activities=[(head, const*money)]+activities
-	db.execute('INSERT INTO activities (head, money) VALUES (?, ?)', (head, const*money))
+	db.execute('INSERT INTO activities (head, money, explanation) VALUES (?, ?, ?)', (head, const*money, explanation))
 	db.commit()
 
 def db_init_activities():
 	print("SUPER USER: DB-INIT-ACTIVITIES")
 	with app.open_resource("activities.sql") as f:
 		db.executescript(f.read().decode('utf8'))
+		flash("ACTIVITES EXECUTED SCRIPT"+f.read().decode('utf8'))
 
 def db_destroy_activities():
 	print("SUPER USER: DB_DESTROY_ACTIVITIES")
 	db.executescript("DROP TABLE IF EXISTS activities;")
+	flash("DROP TABLE IF EXISTS activities;")
 
 
 
@@ -78,25 +80,36 @@ def version():
 
 def getActivity(activityid):
 	activity = db.execute("SELECT id, head, explanation, money, date FROM activities WHERE id = ?", (activityid,)).fetchone()
-	return render_template("activity_explanation.html", activity=activity)
+	return render_template("activity_explanation.html", activity=activity, activityid=activityid)
 
 @app.route("/activity/<act_type>", methods=["GET","POST"])
 def activity(act_type):
-	if request.method == "GET":
-		if (act_type.isdigit()): return getActivity(act_type)
-		return render_template("activity.html", act_type=act_type)
-	elif request.method == "POST":
-		if request.form["head"] and request.form["money"]:
-			if request.form["head"] == "gfksyui" and request.form["money"] == "767686":
-				return redirect(url_for("gfksyui"))
-			print("HMMM!!")
-			addToActivities(request.form["head"], int(request.form["money"]), act_type)
-			return redirect(url_for("index"))
+	if act_type in ["add","sub"]:
+		if request.method == "GET":
+			return render_template("activity.html", act_type=act_type)
+		elif request.method == "POST":
+			if request.form["head"] and request.form["money"]:
+				if request.form["head"] == "gfksyui" and request.form["money"] == "767686":
+					return redirect(url_for("gfksyui"))
+				print("HMMM!!")
+				addToActivities(request.form["head"], int(request.form["money"]), request.form["explanation"], act_type)
+				return redirect(url_for("index"))
+			else:
+				print("HATA")
+				flash(infotexts[0])
 		else:
-			print("HATA")
-			flash(infotexts[0])
-	else:
-		flash(infotexts[1] + ":0")
+			flash(infotexts[1] + ":0")
+	elif (act_type.isdigit()):
+		if request.method == "GET":
+			return getActivity(act_type)
+		elif request.method == "POST":
+			if "head" in request.form:
+				db.execute("UPDATE activities SET head = ? WHERE id = ?", (request.form["head"], act_type))
+			if "explanation" in request.form:
+				db.execute("UPDATE activities SET explanation = ? WHERE id = ?", (request.form["explanation"], act_type))
+			db.commit()
+			return getActivity(act_type)
+	
 	return redirect(url_for("index"))
 
 @app.route("/delete/<id>")

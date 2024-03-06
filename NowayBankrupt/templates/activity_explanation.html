@@ -7,17 +7,41 @@
 {% endblock %}
 
 {% block body %}
+<script type="text/javascript">
+</script>
 
-<div style="text-align: center;">
-<p><i>{{ activity["date"] }}</i></p>
+<form action="{{url_for('activity', act_type = activityid)}}" 
+		style="text-align: center;" method="post">
 
-<h3>{{ activity["head"] }}</h3>
+	<p><i>{{ activity["date"] }}</i></p>
 
-{% if activity["money"] > 0 %}
-<p>{{activity["money"]}} TL eklendi.</p>
-{% else %}
-<p>{{activity["money"]*-1}} TL harcandı.</p>
-{% endif %}
+	<h3>{{ activity["head"] }}</h3>
 
-</div>
+	{% if activity["money"] > 0 %}
+	<p>{{activity["money"]}} TL eklendi.</p>
+	{% else %}
+	<p>{{activity["money"]*-1}} TL harcandı.</p>
+	{% endif %}
+
+
+	
+	<p onclick="switchDisplay('explanation_info','explanation');show('submit');" id="explanation_info">
+	{% if activity["explanation"] != None and activity["explanation"] != "" %}
+
+	{{activity["explanation"]}}</p>
+	<textarea id="explanation" name="explanation" style="width:80%;margin:auto;display:none;"
+	>{{activity["explanation"]}}</textarea>
+
+	{% else %}
+
+	Açıklama Yok</p>
+	<textarea id="explanation" name="explanation" style="width:80%;margin:auto;display:none;">
+	</textarea>
+
+	{% endif %}
+
+	<input type="submit" value="Onayla" id='submit' style="display:none;text-align: center;">
+
+</form>
+
 {% endblock %}

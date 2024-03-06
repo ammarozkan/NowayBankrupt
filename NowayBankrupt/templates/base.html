@@ -6,10 +6,29 @@
 		<style>
 			@import "/static/style.css";
 		</style>
-		<script>
+		<script type="text/javascript">
 			function golink(address) 
 			{
 				window.location.href=address;
+			}
+			function hide(id)
+			{
+				document.getElementById(id).style.display = 'none';
+			}
+
+			function show(id)
+			{
+				document.getElementById(id).style.display = 'block';
+			}
+			function switchDisplay(id1,id2)
+			{
+				let elm1 = document.getElementById(id1);
+				let elm2 = document.getElementById(id2);
+
+				let display1 = elm1.style.display;
+				elm1.style.display = elm2.style.display;
+				elm2.style.display = display1;
+
 			}
 		</script>
 	</head>
@@ -34,6 +53,6 @@
 
 		<br><br><br><br>
 		<p class="description"><i>Ev sakinlerine.</i></p>
-		<p class="description" onclick="golink('/version')"><i>v1.2</i></p>
+		<p class="description" onclick="golink('/version')"><i>v1.5</i></p>
 	</body>
 </html>
